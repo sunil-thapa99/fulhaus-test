@@ -37,6 +37,12 @@ _________________________________________________________________
 ## Test model
 -   Run python app.py to start flask
 
+## Build Docker File
+- docker build -t fulhaus .
+
+## Run through docker
+- docker run -p 5000:5000 fulhaus
+
 ## Output
 ``` 
 {
