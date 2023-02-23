@@ -1,0 +1,35 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        apt-get update
+        apt-get install -y docker-ce docker-ce-cli containerd.io
+
+    - name: Build and test Docker image
+      run: |
+        docker build -t fulhaus .
+        docker run -d -p 5000:5000 --name fulhaus fulhaus
+        sleep 10
+        curl -v http://localhost:5000
