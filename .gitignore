@@ -1,0 +1,4 @@
+.ipynb_checkpoints/*
+dataset/*
+Dataset.zip
+detector.h5
