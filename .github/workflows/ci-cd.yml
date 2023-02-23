@@ -16,6 +16,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Give sudo permissions
+      run: |
+        sudo echo "runner ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+      shell: bash
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
